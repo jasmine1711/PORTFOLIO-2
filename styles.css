@@ -262,3 +262,548 @@ footer p { color: var(--white); margin-top:1rem; }
     .title { font-size:2rem; }
     .btn { width:90%; margin:0.5rem auto; }
 }
+/* ================= MOBILE RESPONSIVE ENHANCEMENTS ================= */
+
+/* Large Tablets (900px - 1199px) */
+@media screen and (max-width: 1199px) {
+    nav {
+        padding: 0 3rem;
+    }
+    
+    section {
+        padding: 7rem 5rem;
+    }
+    
+    #profile {
+        gap: 6rem;
+        padding: 0 5rem;
+    }
+    
+    .section__pic-container {
+        width: 350px;
+        height: 350px;
+    }
+    
+    #about, #projects {
+        margin: 4rem 7rem;
+        padding: 7rem 5rem;
+    }
+    
+    .about-pic {
+        max-width: 380px;
+    }
+    
+    .project-card {
+        max-width: 420px;
+    }
+    
+    .contact-info-upper-container {
+        gap: 2.5rem;
+    }
+}
+
+/* Tablets (768px - 899px) */
+@media screen and (max-width: 899px) {
+    nav {
+        padding: 0 2.5rem;
+    }
+    
+    section {
+        padding: 6rem 4rem;
+    }
+    
+    #profile {
+        gap: 5rem;
+        padding: 0 4rem;
+    }
+    
+    .section__pic-container {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .title {
+        font-size: 3.2rem;
+    }
+    
+    .section__text__p1 {
+        font-size: 1.4rem;
+    }
+    
+    .section__text__p2 {
+        font-size: 1.6rem;
+    }
+    
+    #about, #projects {
+        margin: 4rem 5rem;
+        padding: 6rem 4rem;
+    }
+    
+    .about-pic {
+        max-width: 350px;
+    }
+    
+    .project-card {
+        max-width: 400px;
+    }
+    
+    .btn {
+        padding: 0.9rem 1.8rem;
+    }
+    
+    .contact-info-upper-container {
+        gap: 2rem;
+    }
+    
+    .contact-info-container {
+        padding: 1.3rem 1.8rem;
+    }
+}
+
+/* Large Mobile (600px - 767px) - Enhanced version of your existing 600px breakpoint */
+@media screen and (max-width: 767px) {
+    nav {
+        padding: 0 2rem;
+        height: 9vh;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
+    }
+    
+    section {
+        padding: 5rem 3rem;
+    }
+    
+    #profile {
+        gap: 4rem;
+        padding: 0 3rem;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .section__pic-container {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto 1.5rem;
+    }
+    
+    .title {
+        font-size: 2.8rem;
+        line-height: 1.2;
+        margin-bottom: 0.8rem;
+    }
+    
+    .section__text__p1 {
+        font-size: 1.3rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .section__text__p2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    #about, #projects {
+        margin: 3rem 4%;
+        padding: 5rem 3rem;
+        border-radius: 1.8rem;
+    }
+    
+    .about-pic {
+        max-width: 320px;
+        margin: 0 auto 1.5rem;
+    }
+    
+    .about-text p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        text-align: justify;
+    }
+    
+    .project-card {
+        max-width: 380px;
+        margin: 1.2rem 0;
+        border-radius: 1.5rem;
+    }
+    
+    .project-video-container {
+        height: 220px;
+        border-radius: 1.5rem 1.5rem 0 0;
+    }
+    
+    .project-title {
+        font-size: 1.4rem;
+        margin: 1.2rem 1rem 0.8rem;
+    }
+    
+    .project-description {
+        font-size: 0.95rem;
+        margin: 0 1rem 1.5rem;
+        line-height: 1.6;
+    }
+    
+    .skills-container {
+        gap: 1.5rem;
+    }
+    
+    .skill-card {
+        flex: 0 1 calc(50% - 1rem);
+        padding: 1.3rem;
+        border-radius: 1.2rem;
+    }
+    
+    .btn-container {
+        justify-content: center;
+        gap: 1.2rem;
+    }
+    
+    .btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 1rem;
+        width: auto;
+        margin: 0;
+    }
+    
+    #socials-container {
+        justify-content: center;
+        gap: 1.2rem;
+    }
+    
+    .contact-info-upper-container {
+        gap: 1.8rem;
+    }
+    
+    .contact-info-container {
+        padding: 1.2rem 1.7rem;
+    }
+    
+    footer {
+        padding: 2.5rem;
+    }
+    
+    .arrow {
+        bottom: 1.8rem;
+        right: 1.8rem;
+        height: 2.8rem;
+        width: 2.8rem;
+    }
+}
+
+/* Medium Mobile (480px - 599px) */
+@media screen and (max-width: 599px) {
+    nav {
+        padding: 0 1.5rem;
+        height: 8vh;
+    }
+    
+    .logo {
+        font-size: 1.6rem;
+    }
+    
+    section {
+        padding: 4rem 2rem;
+    }
+    
+    #profile {
+        gap: 3rem;
+        padding: 0 2rem;
+    }
+    
+    .section__pic-container {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .section__text__p1 {
+        font-size: 1.2rem;
+    }
+    
+    .section__text__p2 {
+        font-size: 1.4rem;
+    }
+    
+    #about, #projects {
+        margin: 3rem 2rem;
+        padding: 4rem 2.5rem;
+        border-radius: 1.5rem;
+    }
+    
+    .about-pic {
+        max-width: 280px;
+    }
+    
+    .about-text p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    
+    .project-card {
+        max-width: 100%;
+        border-radius: 1.2rem;
+    }
+    
+    .project-video-container {
+        height: 200px;
+        border-radius: 1.2rem 1.2rem 0 0;
+    }
+    
+    .project-title {
+        font-size: 1.3rem;
+    }
+    
+    .project-description {
+        font-size: 0.9rem;
+    }
+    
+    .skill-card {
+        flex: 0 1 100%;
+        padding: 1.2rem;
+        border-radius: 1rem;
+    }
+    
+    .skill-title {
+        font-size: 1.2rem;
+    }
+    
+    .skill-item {
+        font-size: 0.95rem;
+    }
+    
+    .btn-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0.3rem 0;
+        justify-content: center;
+    }
+    
+    .contact-info-upper-container {
+        gap: 1.5rem;
+    }
+    
+    .contact-info-container {
+        padding: 1.1rem 1.5rem;
+    }
+    
+    footer {
+        padding: 2rem 1.5rem;
+    }
+    
+    .arrow {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        height: 2.6rem;
+        width: 2.6rem;
+    }
+}
+
+/* Small Mobile (360px - 479px) */
+@media screen and (max-width: 479px) {
+    nav {
+        padding: 0 1rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    section {
+        padding: 3.5rem 1.5rem;
+    }
+    
+    #profile {
+        gap: 2.5rem;
+        padding: 0 1.5rem;
+    }
+    
+    .section__pic-container {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .title {
+        font-size: 2.2rem;
+    }
+    
+    .section__text__p1 {
+        font-size: 1.1rem;
+    }
+    
+    .section__text__p2 {
+        font-size: 1.3rem;
+    }
+    
+    #about, #projects {
+        margin: 2.5rem 1rem;
+        padding: 3.5rem 2rem;
+        border-radius: 1.2rem;
+    }
+    
+    .about-pic {
+        max-width: 250px;
+    }
+    
+    .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .project-video-container {
+        height: 180px;
+    }
+    
+    .project-title {
+        font-size: 1.2rem;
+    }
+    
+    .project-description {
+        font-size: 0.85rem;
+    }
+    
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .contact-info-container {
+        padding: 1rem 1.2rem;
+    }
+    
+    .contact-info-container p {
+        font-size: 1rem;
+    }
+    
+    footer {
+        padding: 1.5rem 1rem;
+    }
+    
+    .footer-list-items {
+        height: 45px;
+        width: 45px;
+        margin: 0.4rem;
+    }
+    
+    .footer-links {
+        font-size: 1.3rem;
+    }
+    
+    .arrow {
+        bottom: 1.2rem;
+        right: 1.2rem;
+        height: 2.4rem;
+        width: 2.4rem;
+    }
+}
+
+/* Extra Small Mobile (under 360px) */
+@media screen and (max-width: 359px) {
+    section {
+        padding: 3rem 1rem;
+    }
+    
+    #profile {
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .section__pic-container {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .section__text__p1 {
+        font-size: 1rem;
+    }
+    
+    .section__text__p2 {
+        font-size: 1.2rem;
+    }
+    
+    #about, #projects {
+        margin: 2rem 0.5rem;
+        padding: 3rem 1.5rem;
+    }
+    
+    .about-pic {
+        max-width: 220px;
+    }
+    
+    .about-text p {
+        font-size: 0.9rem;
+    }
+    
+    .project-video-container {
+        height: 160px;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.3rem;
+        font-size: 0.9rem;
+    }
+    
+    .contact-info-container {
+        padding: 0.9rem 1rem;
+    }
+    
+    .contact-info-container p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Loader Mobile Adjustments */
+@media screen and (max-width: 768px) {
+    .loader-inner {
+        width: 70px;
+        height: 70px;
+        border-width: 6px;
+    }
+    
+    #profileCircle {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .loader-inner {
+        width: 50px;
+        height: 50px;
+        border-width: 5px;
+    }
+    
+    #profileCircle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    #profileCircle.focus {
+        transform: translate(-50%, -50%) scale(8);
+    }
+}
+
+/* Profile Animation Speed Adjustments */
+@media screen and (max-width: 768px) {
+    .section__pic-container {
+        animation: float 4s ease-in-out infinite;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .section__pic-container {
+        animation: float 3s ease-in-out infinite;
+    }
+}
