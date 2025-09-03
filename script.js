@@ -136,7 +136,7 @@ window.addEventListener("load", () => {
         document.body.style.overflow = "auto";
       }, 1500);
     }, 2000); // 2 seconds for convergence
-  }, 7000); // 5 seconds orbit
+  }, 6000); // 5 seconds orbit
 });
 
 // ================= OTHER EXISTING FEATURES =================
