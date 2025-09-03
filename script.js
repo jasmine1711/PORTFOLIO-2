@@ -5,25 +5,23 @@ function toggleMenu() {
   menu.classList.toggle("open");
   icon.classList.toggle("open");
 }
-
-// ================= LOADER FLOATING CIRCLES =================
+// ================= LOADER FLOATING + ORBIT + FOCUS =================
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
   const canvas = document.getElementById("circles");
   const ctx = canvas.getContext("2d");
   const profileCircle = document.getElementById("profileCircle");
 
-  // ✅ Assets to float
   const assets = [
-    { type: "video", src: "./assets/project-2.mp4", thumb: "./assets/project-1.jpg" },
-    { type: "video", src: "./assets/project-3.mp4", thumb: "./assets/project-2.jpg" },
-    { type: "video", src: "./assets/project-4.mp4", thumb: "./assets/project-3.jpg" },
-    { type: "image", src: "./assets/MY.jpeg" } // profile image
+    { type: "video", thumb: "./assets/project-2.mp4" },
+    { type: "video", thumb: "./assets/project-3.mp4" },
+    { type: "video", thumb: "./assets/project-4.mp4" },
+    { type: "image", src: "./assets/MY.jpeg" }
   ];
 
   let circles = [];
+  let centerPhase = false; // flag for convergence
 
-  // Resize canvas
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -31,79 +29,122 @@ window.addEventListener("load", () => {
   window.addEventListener("resize", resizeCanvas);
   resizeCanvas();
 
-  // Circle object with spring-like floating motion
   class Circle {
-    constructor(asset) {
-      this.asset = asset;
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.radius = 60;
+    constructor(asset, index) {
+      this.baseRadius = 40 + Math.random() * 20;
+      this.radius = this.baseRadius;
+      this.orbitRadius = 100 + index * 120 + Math.random() * 40;
       this.angle = Math.random() * Math.PI * 2;
-      this.speed = 0.002 + Math.random() * 0.003;
-      this.image = new Image();
-      this.image.src = asset.type === "image" ? asset.src : asset.thumb;
+      this.speed = 0.005 + Math.random() * 0.004;
+      this.pulsePhase = Math.random() * Math.PI * 2;
+      this.loaded = false;
+      this.cx = 0; // for convergence
+      this.cy = 0;
+
+      const palette = ["#DC7684", "#E4CA99", "#EAF2F4", "#2D7F9D", "#A4C9D7"];
+      this.color = palette[Math.floor(Math.random() * palette.length)];
+
+      if (asset.type === "image") {
+        this.image = new Image();
+        this.image.src = asset.src;
+        this.image.onload = () => (this.loaded = true);
+      } else if (asset.type === "video") {
+        this.video = document.createElement("video");
+        this.video.src = asset.thumb;
+        this.video.muted = true;
+        this.video.playsInline = true;
+        this.video.loop = true;
+        this.video.autoplay = true;
+        this.video.oncanplay = () => (this.loaded = true);
+        this.video.play().catch(() => {});
+      }
     }
 
     draw() {
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+
+      let x, y;
+      if (centerPhase) {
+        // converge to center
+        this.cx += (cx - this.cx) * 0.05;
+        this.cy += (cy - this.cy) * 0.05;
+        x = this.cx;
+        y = this.cy;
+      } else {
+        x = cx + Math.cos(this.angle) * this.orbitRadius;
+        y = cy + Math.sin(this.angle) * this.orbitRadius;
+      }
+
       ctx.save();
+
+      // glow
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.arc(x, y, this.radius + 10, 0, Math.PI * 2);
+      ctx.fillStyle = this.color + "55";
+      ctx.shadowBlur = 40;
+      ctx.shadowColor = this.color;
+      ctx.fill();
+
+      // clip
+      ctx.beginPath();
+      ctx.arc(x, y, this.radius, 0, Math.PI * 2);
       ctx.closePath();
       ctx.clip();
-      ctx.drawImage(this.image, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
+
+      if (this.loaded) {
+        if (this.image) ctx.drawImage(this.image, x - this.radius, y - this.radius, this.radius * 2, this.radius * 2);
+        else if (this.video) ctx.drawImage(this.video, x - this.radius, y - this.radius, this.radius * 2, this.radius * 2);
+      } else {
+        const gradient = ctx.createRadialGradient(x, y, this.radius * 0.2, x, y, this.radius);
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+
       ctx.restore();
     }
 
     update() {
-      this.angle += this.speed;
-      this.x += Math.sin(this.angle) * 0.5;
-      this.y += Math.cos(this.angle) * 0.5;
+      if (!centerPhase) this.angle += this.speed;
+      this.pulsePhase += 0.05;
+      this.radius = this.baseRadius + Math.sin(this.pulsePhase) * 8;
       this.draw();
     }
   }
 
-  // Create circles
-  assets.forEach(asset => {
-    circles.push(new Circle(asset));
-  });
+  assets.forEach((a, i) => circles.push(new Circle(a, i)));
 
-  // Animate floating
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    circles.forEach(circle => circle.update());
+    circles.forEach(c => c.update());
     requestAnimationFrame(animate);
   }
   animate();
 
-  // ✅ After 5s → move profileCircle to center → zoom in → fade loader
+  // sequence: orbit → converge → profile focus → fade
   setTimeout(() => {
-    // Step 1: Move to center
-    profileCircle.style.transition = "all 1.5s ease-in-out";
-    profileCircle.style.left = `${window.innerWidth / 2 - profileCircle.offsetWidth / 2}px`;
-    profileCircle.style.top = `${window.innerHeight / 2 - profileCircle.offsetHeight / 2}px`;
+    centerPhase = true;
 
-    // Step 2: Zoom in after move completes
+    // after convergence, focus profile
     setTimeout(() => {
       profileCircle.classList.add("focus");
 
-      // Step 3: Fade loader out after zoom
       setTimeout(() => {
         loader.classList.add("fade-out");
         document.body.style.overflow = "auto";
       }, 1500);
-    }, 1500);
-  }, 5000);
+    }, 2000); // 2 seconds for convergence
+  }, 7000); // 5 seconds orbit
 });
 
 // ================= OTHER EXISTING FEATURES =================
 document.addEventListener("DOMContentLoaded", function () {
   const navbar = document.querySelector("nav");
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
+    if (window.scrollY > 50) navbar.classList.add("scrolled");
+    else navbar.classList.remove("scrolled");
   });
 
   const sections = document.querySelectorAll("section");
